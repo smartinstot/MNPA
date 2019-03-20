@@ -1,5 +1,6 @@
 % ELEC 4700 MNA Building
 % David Bascelli and Patrobas Adewumi
+clear;
 
 R1 = 1;
 Cap = 0.25;
@@ -66,17 +67,17 @@ legend('V1', 'VO');
 
 %%%%% AC Sweep %%%%%
 fig_ac = figure;
-hold on;
 V5 = [];
 F(8) = 1; % Set DC voltage
-for w=10:100000
+for w=1E0:1:1E4
     e = (G+2*pi*w*1j*C)\F;
     V5 = [V5 20*log10(abs(e(5)/F(8)))];
 end
+semilogx(1E0:1:1E4, V5);
+hold on;
 title('AC Sweep');
 xlabel('f (Hz)');
 ylabel('Gain (dB)');
-semilogx((10:100000)/180*pi, V5);
     
 %%%%% Cap Sweep %%%%%
 fig_cap = figure;
